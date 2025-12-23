@@ -58,7 +58,7 @@ public class BaseClass {
 	    DriverManager.getDriver().manage().window().maximize();
 	    DriverManager.getDriver().manage().deleteAllCookies();	
 	    DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-	
+
 	}
 	
 	@AfterClass
