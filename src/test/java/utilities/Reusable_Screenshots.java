@@ -11,7 +11,7 @@ import testBase.DriverManager;
 
 public class Reusable_Screenshots {
 
-	 static public String Screenshots(String tname) throws InterruptedException 
+	 public static String Screenshots(String tname) throws InterruptedException 
 	 {
 		Thread.sleep(3000); 
 		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -26,5 +26,17 @@ public class Reusable_Screenshots {
 		return targetFilePath;
 	}
 	
-	
+	public static String InstantScreenshot(String tname)
+	{
+		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		TakesScreenshot takesScreenshot = (TakesScreenshot) DriverManager.getDriver();
+
+		File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+		String targetFilePath=System.getProperty("user.dir")+"\\screenshots\\"+ tname +"_"+timeStamp+".png";
+		
+		File targetFile = new File(targetFilePath);
+		sourceFile.renameTo(targetFile);
+		
+		return targetFilePath;
+	}
 }
