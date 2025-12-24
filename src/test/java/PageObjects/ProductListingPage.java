@@ -1,9 +1,11 @@
 package PageObjects;
 
+import java.security.PublicKey;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class ProductListingPage extends BasePage{
 
@@ -38,10 +40,20 @@ public class ProductListingPage extends BasePage{
 
 	//pagintation
 	@FindBy(xpath="//li[@class='item pages-item-next']/a")
-	List<WebElement> nextBtn;
+	WebElement nextBtn;
 
-
-
+	//product per page 
+	@FindBy(id="limiter")
+	WebElement productPerpage;
+	
+	@FindBy(xpath="//select[@id='limiter']/option[@selected='selected']")
+	WebElement productselected;
+	
+	//select any product
+	@FindBy(xpath="//a[@aria-label='Product Page Link']")
+	List<WebElement> productPresentperPage;
+	
+	
 
 	public void clickOnSizeFilter() 
 	{
@@ -88,19 +100,52 @@ public class ProductListingPage extends BasePage{
 	{
 		while(true) 
 		{
-			if(nextBtn.size() > 0)
+			try
 			{
 				Thread.sleep(2000);
-				js.scrollTo(nextBtn.get(0));
+				js.scrollTo(nextBtn);
 				Thread.sleep(2000);
-				js.jsClick(nextBtn.get(0));
+				js.jsClick(nextBtn);
 			}
-			else
+			catch(Exception e)
 			{
 				break;
 			}
 		}
 	}
 
+	public void selectPEoductPerPage(String value)
+	{
+		js.scrollTo(productPerpage);
+		Select drp = new Select(productPerpage);
+		drp.selectByValue(value);
+	}
+	
+	public boolean compareProductcount() throws InterruptedException 
+	{
+		boolean compare = false;
+		String productPerPageValue = productselected.getText();
+		
+		int count = productPresentperPage.size();
+		String Stringcount = Integer.toString(count);
+		js.scrollTo(productPerpage);
+
+		if(productPerPageValue.equals(Stringcount))
+		{
+			compare = true;
+		}
+		
+		return compare;
+	}
+
+	public void clickOnProduct() 
+	{
+		productPresentperPage.get(0).click();
+	}
+	
+	public void ClickOnWishListBtn() 
+	{
+		
+	}
 
 }
