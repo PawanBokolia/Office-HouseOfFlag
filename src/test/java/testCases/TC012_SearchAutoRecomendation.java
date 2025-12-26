@@ -20,6 +20,7 @@ public class TC012_SearchAutoRecomendation extends BaseClass{
 		Thread.sleep(3000);
 		Assert.assertEquals(hp.productInRecomendation(), p.getProperty("searchProduct"));
 		Reusable_Screenshots.Screenshots("TC012_Recomendation");
+		//need to fix this
 		
 		
 	

@@ -12,7 +12,7 @@
  
 
     <classes>
-       <class name="testCases.TC012_SearchFunctionality"></class>
+       <class name="testCases.TC005_RemoveProFromCart"></class>
     </classes> 
 
 
