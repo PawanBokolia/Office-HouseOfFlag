@@ -1,6 +1,5 @@
 package PageObjects;
 
-import java.security.PublicKey;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -138,9 +137,11 @@ public class ProductListingPage extends BasePage{
 		return compare;
 	}
 
+	//product
 	public void clickOnProduct() 
 	{
-		productPresentperPage.get(0).click();
+		js.scrollTo(productPresentperPage.get(1));
+		productPresentperPage.get(1).click();
 	}
 	
 	public void ClickOnWishListBtn() 
